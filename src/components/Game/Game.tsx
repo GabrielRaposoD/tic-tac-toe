@@ -1,19 +1,8 @@
 import { Square } from 'components/Square';
-import { Winner } from 'interfaces/global';
+import { useTicTacToe } from 'contexts';
 
-interface GameProps {
-  board: string[];
-  winnerPositions: number[];
-  winner: Winner;
-  handleClick: (index: number) => void;
-}
-
-const Game: React.FC<GameProps> = ({
-  board,
-  handleClick,
-  winnerPositions,
-  winner,
-}) => {
+const Game: React.FC = () => {
+  const { board, winnerPositions, winner, handleClick } = useTicTacToe();
   return (
     <div className="grid grid-cols-3 gap-4">
       {board.map((value, index) => (

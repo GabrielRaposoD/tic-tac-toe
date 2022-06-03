@@ -1,9 +1,8 @@
 import { Game } from 'components/Game';
-import useTicTacToe from 'hooks/useTicTacToe';
+import { useTicTacToe } from 'contexts';
 
 const IndexPage = () => {
-  const { board, handleClick, winnerPositions, winner, status, handleStart } =
-    useTicTacToe();
+  const { status, handleStart } = useTicTacToe();
 
   return (
     <section className="flex min-h-screen flex-col items-center justify-center bg-black text-white">
@@ -20,12 +19,7 @@ const IndexPage = () => {
           New Game
         </button>
       ) : (
-        <Game
-          board={board}
-          handleClick={handleClick}
-          winnerPositions={winnerPositions}
-          winner={winner}
-        />
+        <Game />
       )}
     </section>
   );

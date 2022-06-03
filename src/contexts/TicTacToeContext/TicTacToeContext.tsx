@@ -1,5 +1,5 @@
 import { GameStatus, Turn, Winner } from 'interfaces/global';
-import { useEffect, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 
 import { calculateWinner } from 'utils/ticTacToeUtils';
 
@@ -13,7 +13,23 @@ interface IUseTicTacToe {
   handleStart: () => void;
 }
 
-const useTicTacToe = (): IUseTicTacToe => {
+const TicTacToeContext = createContext<IUseTicTacToe | null>(null);
+
+export const useTicTacToe = () => {
+  return useContext(TicTacToeContext);
+};
+
+export const TicTacToeContextProvider: React.FC<any> = ({ children }) => {
+  const values = useProvideTicTacToe();
+
+  return (
+    <TicTacToeContext.Provider value={values}>
+      {children}
+    </TicTacToeContext.Provider>
+  );
+};
+
+const useProvideTicTacToe = () => {
   const [board, setBoard] = useState<Turn[]>(Array(9).fill(null));
   const [turn, setTurn] = useState<Turn>('X');
   const [winner, setWinner] = useState<Winner | null>(null);
@@ -65,5 +81,3 @@ const useTicTacToe = (): IUseTicTacToe => {
     winnerPositions,
   };
 };
-
-export default useTicTacToe;
