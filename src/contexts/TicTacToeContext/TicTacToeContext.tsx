@@ -8,6 +8,7 @@ interface IUseTicTacToe {
   status: GameStatus;
   winner: Winner | null;
   winnerPositions: number[];
+  turn: Turn;
   handleClick: (index: number) => void;
   handleReset: () => void;
   handleStart: () => void;
@@ -79,5 +80,6 @@ const useProvideTicTacToe = () => {
     status,
     winner,
     winnerPositions,
+    turn,
   };
 };
