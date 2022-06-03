@@ -15,11 +15,12 @@ const calculateWinner = (
   for (const pattern of winningPatterns) {
     const [a, b, c] = pattern;
 
-    if (board[a] === board[b] && board[a] === board[c]) {
+    if (board[a] && board[a] === board[b] && board[a] === board[c]) {
       return { winner: board[a], winnerPostion: pattern };
     }
   }
-  return { winner: null, winnerPostion: null };
+
+  return { winner: null, winnerPostion: [] };
 };
 
 export { calculateWinner };

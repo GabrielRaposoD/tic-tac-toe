@@ -2,7 +2,7 @@ import { Game } from 'components/Game';
 import useTicTacToe from 'hooks/useTicTacToe';
 
 const IndexPage = () => {
-  const { board, handleClick } = useTicTacToe();
+  const { board, handleClick, winnerPositions } = useTicTacToe();
 
   return (
     <section className="flex min-h-screen flex-col items-center justify-center bg-black text-white">
@@ -10,7 +10,11 @@ const IndexPage = () => {
         Tic <span className="text-red-500">Tac</span> Toe
       </h1>
       <h5 className="mb-8 text-xs">Made by: Gabriel Raposo</h5>
-      <Game board={board} handleClick={handleClick} />
+      <Game
+        board={board}
+        handleClick={handleClick}
+        winnerPositions={winnerPositions}
+      />
     </section>
   );
 };
