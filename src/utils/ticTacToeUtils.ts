@@ -1,6 +1,8 @@
+import { Turn, Winner } from 'interfaces/global';
+
 const calculateWinner = (
-  board: ('X' | 'O')[]
-): { winner: 'X' | 'O'; winnerPostion: number[] } => {
+  board: Turn[]
+): { winner: Winner; winnerPostion: number[] } => {
   const winningPatterns = [
     [0, 1, 2],
     [3, 4, 5],
@@ -18,6 +20,10 @@ const calculateWinner = (
     if (board[a] && board[a] === board[b] && board[a] === board[c]) {
       return { winner: board[a], winnerPostion: pattern };
     }
+  }
+
+  if (!board.includes(null)) {
+    return { winner: 'DRAW', winnerPostion: [] };
   }
 
   return { winner: null, winnerPostion: [] };

@@ -1,9 +1,11 @@
+import { Winner } from 'interfaces/global';
 import cs from 'clsx';
 
 interface SquareProps {
   index: number;
   value: string;
   isWinner: boolean;
+  winner: Winner;
   handleClick: (index: number) => void;
 }
 
@@ -12,6 +14,7 @@ const Square: React.FC<SquareProps> = ({
   index,
   handleClick,
   isWinner,
+  winner,
 }) => {
   return (
     <button
@@ -23,6 +26,7 @@ const Square: React.FC<SquareProps> = ({
           'text-cyan-400': value === 'O',
           'border-white': !isWinner,
           'border-green-500': isWinner,
+          'border-yellow-500': winner === 'DRAW',
         }
       )}
     >

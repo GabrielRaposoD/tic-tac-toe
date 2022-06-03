@@ -1,11 +1,12 @@
+import { GameStatus, Turn, Winner } from 'interfaces/global';
 import { useEffect, useState } from 'react';
 
 import { calculateWinner } from 'utils/ticTacToeUtils';
 
 interface IUseTicTacToe {
-  board: string[];
-  status: string;
-  winner: string | null;
+  board: Turn[];
+  status: GameStatus;
+  winner: Winner | null;
   winnerPositions: number[];
   handleClick: (index: number) => void;
   handleReset: () => void;
@@ -13,13 +14,11 @@ interface IUseTicTacToe {
 }
 
 const useTicTacToe = (): IUseTicTacToe => {
-  const [board, setBoard] = useState<('X' | 'O')[]>(Array(9).fill(null));
-  const [turn, setTurn] = useState<'X' | 'O'>('X');
-  const [winner, setWinner] = useState<'X' | 'O' | null>(null);
+  const [board, setBoard] = useState<Turn[]>(Array(9).fill(null));
+  const [turn, setTurn] = useState<Turn>('X');
+  const [winner, setWinner] = useState<Winner | null>(null);
   const [winnerPositions, setWinnerPosition] = useState<number[]>([]);
-  const [status, setStatus] = useState<'CREATED' | 'FINISHED' | 'NEW'>(
-    'CREATED'
-  );
+  const [status, setStatus] = useState<GameStatus>('NEW');
   const [players, setPlayers] = useState(['', '']);
 
   useEffect(() => {
@@ -51,7 +50,7 @@ const useTicTacToe = (): IUseTicTacToe => {
   };
 
   const handleReset = () => {
-    setBoard(Array(9).fill(''));
+    setBoard(Array(9).fill(null));
     setWinner(null);
     setStatus('NEW');
   };
