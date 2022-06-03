@@ -37,7 +37,7 @@ const useTicTacToe = (): IUseTicTacToe => {
   }, [board, status]);
 
   const handleClick = (index: number): void => {
-    if (index < 0 || index > 9 || winner) return;
+    if (index < 0 || index > 9 || winner || board[index] !== null) return;
     const newBoard = [...board];
     newBoard.splice(index, 1, turn);
     setBoard(newBoard);
